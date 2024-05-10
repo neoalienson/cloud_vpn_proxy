@@ -20,5 +20,13 @@ variable "ssh_public_key" {
 
 variable "google_project" {
   type        = string
-  description = "Google Cloud Project Name"
+  default     = "no project"
+  description = "Google Cloud Project Name."
+}
+
+locals {
+  # cross variables validation could be improved in Terraform v1.9.0
+  # tflint-ignore: terraform_unused_declarations
+  validate_project = (var.google_project == "no project" && var.cloud_service_provider == "google") ? tobool(
+  "google_project must be provided when the provider is 'google'.") : true
 }
