@@ -1,0 +1,1 @@
+Terraform script to provision proxy on Cloud for a lower cost and paid-as-you-go.
